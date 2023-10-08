@@ -28,7 +28,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const counterSlice = createSlice({
     name: 'counter',
     initialState: { counter: 0 },
-    reducer: {
+    reducers: {
         increment (state, action){
             state.counter++;
         },
@@ -44,6 +44,8 @@ const counterSlice = createSlice({
 export const actions = counterSlice.actions;
 
 const store = configureStore({
+    // despite us using the reducers property in the counterSlice object 
+    // we still access them through the property reducer (combined)
     reducer: counterSlice.reducer
 })
 
