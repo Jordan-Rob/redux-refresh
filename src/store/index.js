@@ -1,3 +1,7 @@
+/*
+Basic redux/react-redux implementation
+
+
 import { createStore } from "redux";
 
 const reducer = ( state={counter:0}, action) => {
@@ -16,4 +20,31 @@ const reducer = ( state={counter:0}, action) => {
 
 const store = createStore(reducer)
 
-export default store
+export default store;
+*/
+
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+
+const counterSlice = createSlice({
+    name: 'counter',
+    initialState: { counter: 0 },
+    reducer: {
+        increment (state, action){
+            state.counter++;
+        },
+        decrement (state, action) {
+            state.counter--;
+        },
+        addBy (state, action) {
+            state.counter += 10;
+        }
+    }
+})
+
+export const actions = counterSlice.actions;
+
+const store = configureStore({
+    reducer: counterSlice.reducer
+})
+
+export default store;
